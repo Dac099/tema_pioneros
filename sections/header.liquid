@@ -1,0 +1,52 @@
+<section class="p-2 flex justify-evenly items-center">
+  <h1
+    class="text-3xl font-bold"
+  >
+    Salsas Pioneros
+  </h1>
+
+  <nav class="max-md:hidden">
+    <ul class="flex gap-3">
+      {% for link in linklists.main-menu.links %}
+        {% if link.links != blank %}
+          <button type="button" class="inline-flex bg-[#290517] items-center text-sm  font-semibold text-slate-100 hover:bg-[#C55398] rounded-md px-3 py-1">
+            {{ link.title }}
+            {% render 'chevron-down-icon' %}
+          </button>
+
+          {% else %}            
+            <a 
+              href="{{ link.url }}"
+              class="bg-[#290517] text-slate-100 font-semibold text-sm px-3 py-1 rounded-md hover:bg-[#C55398] {% if link.active %}bg-[#C55398]{% endif %}"
+            >
+              {{ link.title }}
+            </a>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="max-md:block hidden">
+      {% render 'burguer-menu-icon' %}
+  </div>
+
+  <div class="flex gap-3 items-center max-md:hidden">
+    <a 
+      href="{{ routes.cart_url }}"
+    >
+      {% render 'shopping-icon' %}
+    </a>
+    <a 
+      href="{{ routes.account_login_url }}" 
+      class="text-sm hover:underline underline-offset-2 hover:text-[#C55398]"
+    >
+      Iniciar
+    </a>
+    <a 
+      href="{{ routes.account_register_url }}" 
+      class="text-sm hover:underline underline-offset-2 hover:text-[#C55398]"
+    >
+      Registrarse
+    </a>
+  </div>
+</section>
