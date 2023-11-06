@@ -5,7 +5,7 @@
   <h1
     class="text-3xl font-bold"
   >
-    Salsas Pioneros
+    {{ section.settings.header_desktop_title }}
   </h1>
 
   {% comment %} Default menu {% endcomment %}
@@ -133,4 +133,18 @@
   </div>
 
 </section>
-      
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_desktop_title",
+      "label": "Title",
+      "default": "Salsas Pineros",
+      "info": "El título visible en desktop"
+    }
+  ]
+}
+{% endschema %}
