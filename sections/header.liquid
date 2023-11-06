@@ -1,19 +1,40 @@
-<section class="p-2 flex justify-evenly items-center">
+<section 
+  class="p-2 flex justify-evenly items-center max-md:justify-between relative"
+  x-data="{ mobileMenuOpen: false}"
+>
   <h1
     class="text-3xl font-bold"
   >
     Salsas Pioneros
   </h1>
 
-  <nav class="max-md:hidden">
+  <nav class="max-md:hidden relative" x-data="{ open: false }">
     <ul class="flex gap-3">
       {% for link in linklists.main-menu.links %}
         {% if link.links != blank %}
-          <button type="button" class="inline-flex bg-[#290517] items-center text-sm  font-semibold text-slate-100 hover:bg-[#C55398] rounded-md px-3 py-1">
+          <button 
+            x-on:click="open = !open" 
+            type="button" 
+            class="inline-flex bg-[#290517] items-center text-sm  font-semibold text-slate-100 hover:bg-[#C55398] rounded-md px-3 py-1"
+          >
             {{ link.title }}
             {% render 'chevron-down-icon' %}
           </button>
 
+          <div 
+            x-show="open"
+            @click.away="open = false"
+            class="absolute top-10 -right-10 flex flex-col gap-2 shadow-xl border-2 border-slate-200 p-2 rounded-lg"
+          >
+            {% for childlink in link.links %}
+              <a 
+                href="{{ childlink.url }}" 
+                class="font-bold text-salte-900 hover:border-b-2 hover:border-[#c55398] hover:text-[#C55398] my-2 mx-4"
+              >
+                {{ childlink.title }}
+              </a>
+            {% endfor %}
+          </div>
           {% else %}            
             <a 
               href="{{ link.url }}"
@@ -26,7 +47,10 @@
     </ul>
   </nav>
 
-  <div class="max-md:block hidden">
+  <div 
+    class="max-md:block hidden"
+    x-on:click="mobileMenuOpen = true"
+  >
       {% render 'burguer-menu-icon' %}
   </div>
 
@@ -49,4 +73,55 @@
       Registrarse
     </a>
   </div>
+
+  <section
+      class="absolute top-0 left-0 z-10 w-screen h-screen bg-[#c55398] p-2"
+      x-show="mobileMenuOpen"
+  >
+      <div class="flex justify-between items-center border-b-2 pb-4">
+        <h1 class="text-xl font-bold text-slate-50">{{ shop.name }}</h1>
+        <button
+          type="button"
+          x-on:click="mobileMenuOpen = false"
+        >
+          {% render 'close-icon' %}
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-3 pl-4 mt-10" x-data="{ subLinks: false}">
+        {% for link in linklists.main-menu.links %}
+          {% if link.links != blank %}
+            <button
+              type="button "
+              class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg text-left flex justify-between items-center"
+              x-on:click="subLinks = !subLinks"
+            >
+              {{ link.title }}
+              {% render 'chevron-down-icon' %}
+            </button>
+
+            <div class="flex flex-col mt-2 gap-3" x-show="subLinks">
+              {% for childlink in link.links %}
+                <a 
+                  href="{{ link.url }}"
+                  class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg ml-8"
+                >
+                  {{ childlink.title }}
+                </a>
+              {% endfor %}
+            </div>
+
+            {% else %}  
+              <a 
+                href="{{ link.url }}"
+                class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg"
+              >
+                {{ link.title }}
+              </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+  </section>
 </section>
+      
