@@ -15,8 +15,12 @@
     </head>
   <body>
     {% section 'header' %}
-    <main role="main">      
-      {{ content_for_layout }}
+    <main 
+      role="main" 
+      class="overflow-x-hidden max-w-5xl max-sm:px-5 mx-auto"
+    > 
+      {{ content_for_layout }}  
+      {% section 'home' %}
     </main>
   </body>
 </html>

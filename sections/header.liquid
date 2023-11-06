@@ -2,11 +2,7 @@
   class="p-2 flex justify-evenly items-center max-md:justify-between relative"
   x-data="{ mobileMenuOpen: false}"
 >
-  <h1
-    class="text-3xl font-bold"
-  >
-    {{ section.settings.header_desktop_title }}
-  </h1>
+  {{ images['Logo.png'] | image_url: width: 100 | image_tag }}
 
   {% comment %} Default menu {% endcomment %}
   <nav class="max-md:hidden relative" x-data="{ open: false }">
@@ -58,7 +54,7 @@
 
   {% comment %} Mobile menu {% endcomment %}
   <section
-      class="absolute top-0 left-0 z-10 w-screen h-screen bg-[#c55398] p-2"
+      class="absolute top-0 left-0 z-10 w-screen h-screen bg-[#c55398] p-2 overflow-y-auto"
       x-show="mobileMenuOpen"
   >
       <div class="flex justify-between items-center border-b-2 pb-4">

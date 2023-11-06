@@ -1,0 +1,57 @@
+<section 
+  class="h-[70vh] grid place-content-center sm:px-5"
+>
+  <div>
+    <p class="text-5xl font-bold text-[#290517] mb-10 max-sm:text-4xl">Inicio</p>
+    <p class="text-4xl mx-auto max-sm:text-3xl">
+      En Pioneros, estamos apasionados por llevar a tu mesa el auténtico sabor de México. Nos dedicamos a crear salsas de la más alta calidad, elaboradas con los mejores ingredientes que nuestra tierra tiene para ofrecer.
+    </p>
+  </div>
+</section>
+
+<section
+  class="w-full h-screen sm:px-5 flex flex-col justify-between py-10"
+>
+  <p class="text-5xl max-sm:text-4xl text-[#c55398] font-bold">Nuestros favoritos</p>
+
+  <section class="flex justify-center">
+    <section
+      class="flex items-center gap-10 overflow-x-auto mt-10 pb-5"
+    >
+      <article>
+        <div class="border-2 border-[#c55398] rounded-lg shadow-xl w-[250px] grid place-content-center">
+          {{ images['salsa_ranchera.png'] | image_url: width: 200 | image_tag }}
+        </div>
+        <p class="text-center text-xl text-[#490a29] font-semibold">Salsa ranchera</p>
+      </article>
+
+      <article>
+        <div class="border-2 border-[#c55398] rounded-lg shadow-xl w-[250px] grid place-content-center">
+          {{ images['salsa_ranchera.png'] | image_url: width: 200 | image_tag }}
+        </div>
+        <p class="text-center text-xl text-[#490a29] font-semibold">Salsa ranchera</p>
+      </article>
+
+      <article>
+        <div class="border-2 border-[#c55398] rounded-lg shadow-xl w-[250px] grid place-content-center">
+          {{ images['salsa_ranchera.png'] | image_url: width: 200 | image_tag }}
+        </div>
+        <p class="text-center text-xl text-[#490a29] font-semibold">Salsa ranchera</p>
+      </article>
+
+    </section>
+  </section>
+
+  <a
+    href="{{ pages['Productos'].url }}"
+    class="bg-[#490a29] rounded-2xl h-14 w-52 text-slate-50 font-bold flex items-center justify-between px-2 self-center"
+  >
+    Ir a la tienda
+
+    {% render 'store-icon' %}
+  </a>
+</section>
+
+<section class="h-screen">
+
+</section>
