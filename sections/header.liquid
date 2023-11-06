@@ -8,6 +8,7 @@
     Salsas Pioneros
   </h1>
 
+  {% comment %} Default menu {% endcomment %}
   <nav class="max-md:hidden relative" x-data="{ open: false }">
     <ul class="flex gap-3">
       {% for link in linklists.main-menu.links %}
@@ -47,6 +48,7 @@
     </ul>
   </nav>
 
+  {% comment %} Buer menu icon {% endcomment %}
   <div 
     class="max-md:block hidden"
     x-on:click="mobileMenuOpen = true"
@@ -54,6 +56,62 @@
       {% render 'burguer-menu-icon' %}
   </div>
 
+  {% comment %} Mobile menu {% endcomment %}
+  <section
+      class="absolute top-0 left-0 z-10 w-screen h-screen bg-[#c55398] p-2"
+      x-show="mobileMenuOpen"
+  >
+      <div class="flex justify-between items-center border-b-2 pb-4">
+        <h1 class="text-xl font-bold text-slate-50">{{ shop.name }}</h1>
+        <button
+          type="button"
+          x-on:click="mobileMenuOpen = false"
+        >
+          {% render 'close-icon' %}
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-5 pl-4 mt-10">
+        {% for link in linklists.main-menu.links %}
+          <div 
+            x-data="{ subLinks: false}"
+          >
+            {% if link.links != blank %}
+              <button
+                type="button "
+                class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg text-left flex justify-between items-center w-full"
+                x-on:click="subLinks = !subLinks"
+              >
+                {{ link.title }}
+                {% render 'chevron-down-icon' %}
+              </button>
+
+              <div class="flex flex-col mt-2 gap-3" x-show="subLinks">
+                {% for childlink in link.links %}
+                  <a 
+                    href="{{ link.url }}"
+                    class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg ml-8"
+                  >
+                    {{ childlink.title }}
+                  </a>
+                {% endfor %}
+              </div>
+
+              {% else %}  
+                <a 
+                  href="{{ link.url }}"
+                  class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg w-full block"
+                >
+                  {{ link.title }}
+                </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+  </section>
+
+  {% comment %} User actions {% endcomment %}
   <div class="flex gap-3 items-center max-md:hidden">
     <a 
       href="{{ routes.cart_url }}"
@@ -74,54 +132,5 @@
     </a>
   </div>
 
-  <section
-      class="absolute top-0 left-0 z-10 w-screen h-screen bg-[#c55398] p-2"
-      x-show="mobileMenuOpen"
-  >
-      <div class="flex justify-between items-center border-b-2 pb-4">
-        <h1 class="text-xl font-bold text-slate-50">{{ shop.name }}</h1>
-        <button
-          type="button"
-          x-on:click="mobileMenuOpen = false"
-        >
-          {% render 'close-icon' %}
-        </button>
-      </div>
-
-      <div class="flex flex-col gap-3 pl-4 mt-10" x-data="{ subLinks: false}">
-        {% for link in linklists.main-menu.links %}
-          {% if link.links != blank %}
-            <button
-              type="button "
-              class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg text-left flex justify-between items-center"
-              x-on:click="subLinks = !subLinks"
-            >
-              {{ link.title }}
-              {% render 'chevron-down-icon' %}
-            </button>
-
-            <div class="flex flex-col mt-2 gap-3" x-show="subLinks">
-              {% for childlink in link.links %}
-                <a 
-                  href="{{ link.url }}"
-                  class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg ml-8"
-                >
-                  {{ childlink.title }}
-                </a>
-              {% endfor %}
-            </div>
-
-            {% else %}  
-              <a 
-                href="{{ link.url }}"
-                class="text-lg bg-slate-50/40 p-4 text-slate-50 rounded-lg"
-              >
-                {{ link.title }}
-              </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-  </section>
 </section>
       
