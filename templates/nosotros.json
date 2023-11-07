@@ -1,0 +1,9 @@
+{
+  "name": "Template nosotros",
+  "sections": {
+    "template": {
+      "type": "template-nosotros"
+    }
+  },
+  "order": ["template"]
+}

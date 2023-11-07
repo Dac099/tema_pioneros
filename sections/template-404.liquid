@@ -1,0 +1,60 @@
+<section class="flex flex-col">
+  <p 
+    class="text-9xl text-center font-bold text-[#c55398] mb-5"  
+  >
+    {{ section.settings.title }}
+  </p>
+
+  <p
+    class="text-lg font-semibold text-[#490A29] mb-12"
+  >
+    {{ section.settings.subtext_title }}
+  </p>
+
+  {% if section.settings.button_url == blank %}
+    {% assign shop_url = shop.secure_url %}
+    {% else %}
+      {% assign shop_url = section.settings.button_url %}  
+  {% endif %}
+
+  <a 
+    href="{{ shop_url }}" 
+    class="bg-[#EADA24] py-4 px-10 rounded-md self-center font-bold text-[#490A29] hover:shadow-2xl border-2 border-[#EADA24] hover:border-[#490A29]"
+  >
+    {{ section.settings.button_label }}
+  </a>
+
+</section>
+
+{% schema %}
+{
+  "name": "Section 404",
+  "tag": "section",
+  "class": "grid place-content-center h-screen",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "404",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "subtext_title",
+      "default": "No encontramos la página que buscas",
+      "label": "Descrición"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Ir a inicio",
+      "label": "Texto del botón"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Link del botón"
+    }
+  ]
+}
+{% endschema %}

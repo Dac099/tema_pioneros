@@ -1,0 +1,31 @@
+<section
+  class=" h-40 bg-[#EADA24] flex justify-between px-4 py-2"
+>
+  <section class="flex gap-10 items-start">
+    <ul class="flex flex-col text-[#490A29] text-sm gap-3">
+      {% for link in linklists.footer.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </ul>
+
+    <ul class="flex flex-col text-[#490A29] text-sm gap-3">
+      <a href="{{ pages.distribuidor.url }}">Quiero ser distribuidor</a>
+      <a href="{{ pages['centros-de-distribucion'].url }}">Centros de distribución</a>
+    </ul>
+  </section>
+
+  <section class="flex gap-2 items-center justify-evenly self-end">
+    <a class="w-8 h-8" href="https://www.facebook.com/Pioneros.Salsas.Mex?mibextid=LQQJ4d">
+      {% render 'facebook-icon' %}
+    </a>
+
+    <a class="w-8 h-8" href="https://instagram.com/pioneros_salsas_mexicanas?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr">
+      {% render 'instagram-icon' %} 
+    </a>
+
+    <a class="w-8 h-8" href="#">
+      {% render 'tiktok-icon' %}
+    </a>
+
+  </section>
+</section>
